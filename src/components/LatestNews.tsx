@@ -7,7 +7,7 @@ const latestNews = [
   {
     image: news1,
     category: "LANÇAMENTO",
-    title: "Hélio Farsante lança novo single "Dançar Sozinho"",
+    title: "Hélio Farsante lança novo single 'Dançar Sozinho'",
     author: "Redação",
     time: "12:21",
     excerpt: "O mercado angolano acaba de ganhar mais um talentoso artista, Hélio Farsante, uma voz promissora da música nacional. A...",
