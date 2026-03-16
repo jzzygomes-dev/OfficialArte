@@ -7,15 +7,15 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: "1rem",
       screens: {
-        "2xl": "1400px",
+        "2xl": "1100px",
       },
     },
     extend: {
       fontFamily: {
-        display: ["Syne", "sans-serif"],
-        body: ["Inter", "sans-serif"],
+        display: ["Oswald", "sans-serif"],
+        body: ["Source Sans 3", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
