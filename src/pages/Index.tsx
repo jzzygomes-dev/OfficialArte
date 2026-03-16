@@ -1,19 +1,19 @@
-import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
-import ReleasesGrid from "@/components/ReleasesGrid";
-import FeaturedArtists from "@/components/FeaturedArtists";
-import StickyPlayer from "@/components/StickyPlayer";
-import Footer from "@/components/Footer";
+import NewsNavbar from "@/components/NewsNavbar";
+import HeroArticle from "@/components/HeroArticle";
+import CategoryGrid from "@/components/CategoryGrid";
+import LatestNews from "@/components/LatestNews";
+import CategoriesFooter from "@/components/CategoriesFooter";
+import NewsFooter from "@/components/NewsFooter";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Navbar />
-      <HeroSection />
-      <ReleasesGrid />
-      <FeaturedArtists />
-      <Footer />
-      <StickyPlayer />
+      <NewsNavbar />
+      <HeroArticle />
+      <CategoryGrid />
+      <LatestNews />
+      <CategoriesFooter />
+      <NewsFooter />
     </div>
   );
 };
