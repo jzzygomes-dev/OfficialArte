@@ -68,7 +68,7 @@ const LatestNews = () => {
                 {news.excerpt}
               </p>
             </div>
-          </a>
+          </Link>
         ))}
       </div>
 
