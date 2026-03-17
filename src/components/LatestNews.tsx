@@ -15,6 +15,7 @@ const latestNews = [
     excerpt: "O mercado angolano acaba de ganhar mais um talentoso artista, Hélio Farsante, uma voz promissora da música nacional. A...",
   },
   {
+    id: "3",
     image: news3,
     category: "LANÇAMENTO",
     title: "Querido presta homenagem aos ente queridos em \"Saudades\"",
