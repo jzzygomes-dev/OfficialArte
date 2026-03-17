@@ -4,59 +4,51 @@ import heroImg from "@/assets/news-hero.jpg";
 
 const HeroArticle = () => {
   return (
-    <section className="container mx-auto py-6">
-      <div className="grid md:grid-cols-[1.2fr_1fr] gap-4 items-start">
-        {/* Main featured */}
-        <Link to="/post/1" className="group block">
-          <div className="relative overflow-hidden rounded-sm">
-            <img
-              src={heroImg}
-              alt="Artista em destaque"
-              className="w-full aspect-[4/3] md:aspect-[16/10] object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-accent/90 to-transparent p-4 md:p-6">
-              <span className="category-badge-lancamento mb-2">Lançamento</span>
-              <h1 className="font-display text-xl md:text-3xl font-bold text-accent-foreground leading-tight mt-2">
-                Artista angolano surpreende com novo álbum que mistura kuduro e afrobeat
-              </h1>
-              <div className="flex items-center gap-3 mt-2 text-accent-foreground/70 text-xs">
-                <span>Redação</span>
-                <span className="flex items-center gap-1">
-                  <Clock className="w-3 h-3" /> 14:30
-                </span>
-              </div>
-            </div>
-          </div>
-        </Link>
+    <section className="relative">
+      {/* Hero covering 50vh */}
+      <div className="relative h-[50vh] min-h-[320px] overflow-hidden">
+        <img
+          src={heroImg}
+          alt="Artista em destaque"
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-accent/95 via-accent/40 to-transparent" />
 
-        {/* Side text excerpt */}
-        <div className="flex flex-col gap-4">
-          <div className="bg-muted p-4 rounded-sm">
-            <span className="category-badge-lancamento mb-2">Lançamento</span>
-            <h2 className="font-display text-lg font-bold text-foreground leading-snug mt-2">
-              Hélio Farsante lança novo single "Dançar Sozinho"
-            </h2>
-            <p className="text-muted-foreground text-sm mt-2 leading-relaxed">
-              O mercado angolano acaba de ganhar mais um talentoso artista, Hélio Farsante, uma voz promissora da música nacional. Após meses no backstage...
-            </p>
-            <div className="flex items-center gap-3 mt-3 text-muted-foreground text-xs">
-              <span>Redação</span>
-              <span className="flex items-center gap-1">
-                <Clock className="w-3 h-3" /> 12:21
-              </span>
-            </div>
-          </div>
-
-          {/* Banner promo */}
-          <div className="bg-primary rounded-sm p-4 md:p-5 text-center">
-            <p className="font-display text-primary-foreground text-lg md:text-xl font-bold uppercase leading-tight">
-              Onde a música encontra os factos!
-            </p>
-            <p className="text-primary-foreground/80 text-xs mt-1 font-body">
-              MusicoMania News — Desde 2018
-            </p>
+        <div className="relative z-10 container mx-auto px-4 h-full flex flex-col justify-end pb-16 md:pb-20">
+          <span className="category-badge-lancamento mb-3 self-start">Lançamento</span>
+          <Link to="/post/1" className="group">
+            <h1 className="font-display text-2xl md:text-4xl lg:text-5xl font-bold text-accent-foreground leading-tight max-w-2xl group-hover:text-primary transition-colors">
+              Artista angolano surpreende com novo álbum que mistura kuduro e afrobeat
+            </h1>
+          </Link>
+          <div className="flex items-center gap-3 mt-3 text-accent-foreground/70 text-xs font-body">
+            <span>Redação</span>
+            <span className="flex items-center gap-1">
+              <Clock className="w-3 h-3" /> 14:30
+            </span>
           </div>
         </div>
+      </div>
+
+      {/* Spiral / wave SVG at the bottom */}
+      <div className="absolute bottom-0 left-0 right-0 translate-y-[1px]">
+        <svg
+          viewBox="0 0 1440 120"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="w-full h-auto block"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,80 C120,100 240,40 360,60 C480,80 600,20 720,50 C840,80 960,30 1080,55 C1200,80 1320,40 1440,60 L1440,120 L0,120 Z"
+            className="fill-background"
+          />
+          <path
+            d="M0,90 C160,110 320,50 480,70 C640,90 800,40 960,65 C1120,90 1280,50 1440,75 L1440,120 L0,120 Z"
+            className="fill-background"
+            opacity="0.5"
+          />
+        </svg>
       </div>
     </section>
   );
