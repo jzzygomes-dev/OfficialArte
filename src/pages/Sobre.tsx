@@ -17,7 +17,7 @@ const Sobre = () => {
 
         <div className="space-y-4 text-foreground/80 text-sm leading-relaxed font-body">
           <p>
-            A <strong className="text-primary">Official Arte Entretenimento</strong> é uma plataforma de divulgação musical dedicada a promover artistas, lançamentos e eventos do cenário musical angolano e lusófono.
+            A <strong className="text-primary">OFFICIAL ARTE ENTRETENIMENTO</strong> é uma Indústria da Comunicação Social com objetivo de Industrializar e divulgar conteúdos Sociais e musicais,  promovendo artistas, lançamentos e eventos do cenário musical angolano e lusófono.
           </p>
           <p>
             Fundada com a missão de dar visibilidade à cultura musical africana, a nossa plataforma cobre notícias, entrevistas exclusivas, lançamentos de singles e álbuns, e os eventos mais quentes do mundo da música.
@@ -26,7 +26,7 @@ const Sobre = () => {
             Acreditamos no poder da música como instrumento de transformação social e cultural. Por isso, trabalhamos diariamente para trazer ao nosso público o melhor conteúdo sobre o universo musical, sempre com profissionalismo e paixão.
           </p>
           <p>
-            A nossa equipa é composta por jornalistas, produtores de conteúdo e amantes da música que partilham o mesmo objectivo: conectar artistas ao mundo.
+            A nossa equipa é composta por jornalistas (apresentadores), produtores de conteúdo e amantes da música que partilham o mesmo objectivo: conectar artistas ao mundo.
           </p>
         </div>
 
