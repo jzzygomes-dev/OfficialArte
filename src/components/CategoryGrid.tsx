@@ -73,7 +73,7 @@ const CategoryGrid = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-4">
         {/* Large featured */}
-        <a href="#" className="group block">
+        <Link to="/post/2" className="group block">
           <div className="relative overflow-hidden rounded-sm">
             <img
               src={articles[0].image}
