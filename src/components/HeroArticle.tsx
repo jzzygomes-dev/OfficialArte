@@ -7,7 +7,7 @@ const HeroArticle = () => {
     <section className="container mx-auto py-6">
       <div className="grid md:grid-cols-[1.2fr_1fr] gap-4 items-start">
         {/* Main featured */}
-        <a href="#" className="group block">
+        <Link to="/post/1" className="group block">
           <div className="relative overflow-hidden rounded-sm">
             <img
               src={heroImg}
