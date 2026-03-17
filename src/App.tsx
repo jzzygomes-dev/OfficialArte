@@ -9,6 +9,7 @@ import Privacidade from "./pages/Privacidade.tsx";
 import Termos from "./pages/Termos.tsx";
 import Contacto from "./pages/Contacto.tsx";
 import Equipe from "./pages/Equipe.tsx";
+import PostDetail from "./pages/PostDetail.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
