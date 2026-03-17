@@ -15,13 +15,13 @@ const team = [
   {
     name: "NGUINAMAU GARCIA",
     role: "DIRETOR TÉCNICO",
-    description: "Músico com mais de 20 anos de experiência. KIAZAYA MÁGNOO Responsável pela linha análise de conteúdos e qualidade do conteúdo publicado.",
+    description: "Músico com mais de 20 anos de experiência. KIAZAYA MÁGNOO Responsável pela linha de análise de conteúdos e qualidade do conteúdo publicado.",
     image: team2,
   },
   {
     name: "JÚLIO GOMES",
     role: "DIRECTOR DE CONTEÚDOS DIGITAIS",
-    description: "Especialista em media digital e redes sociais, CEO JZZY que o nosso conteúdo chega ao público certo, no momento certo.",
+    description: "Especialista em media digital e redes sociais, CEO JZZY responsável que garante que o nosso conteúdo chega ao público certo, no momento certo.",
     image: team4,
   },
 ];
