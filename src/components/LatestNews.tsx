@@ -46,7 +46,7 @@ const LatestNews = () => {
 
       <div className="flex flex-col divide-y divide-border">
         {latestNews.map((news, i) => (
-          <a href="#" key={i} className="group flex gap-4 py-4 first:pt-0 last:pb-0">
+          <Link to={`/post/${news.id}`} key={i} className="group flex gap-4 py-4 first:pt-0 last:pb-0">
             <div className="flex-shrink-0 w-28 md:w-36 overflow-hidden rounded-sm">
               <img
                 src={news.image}
