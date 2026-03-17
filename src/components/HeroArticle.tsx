@@ -44,14 +44,10 @@ const HeroArticle = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 max-w-md mx-auto">
-            {stats.map(({ icon: Icon, value, label }) => (
-              <div key={label} className="flex flex-col items-center gap-2">
-                <div className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-primary-foreground/15 backdrop-blur-sm flex items-center justify-center">
-                  <Icon className="w-5 h-5 md:w-6 md:h-6 text-secondary" />
-                </div>
-                <span className="font-display text-xl md:text-2xl font-extrabold text-primary-foreground">{value}</span>
-                <span className="text-primary-foreground/70 text-[10px] md:text-xs font-body leading-tight">{label}</span>
+          <div className="flex justify-center gap-6">
+            {stats.map(({ icon: Icon, label }) => (
+              <div key={label} className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-primary-foreground/15 backdrop-blur-sm flex items-center justify-center">
+                <Icon className="w-5 h-5 md:w-6 md:h-6 text-secondary" />
               </div>
             ))}
           </div>
