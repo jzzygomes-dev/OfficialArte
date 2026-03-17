@@ -15,7 +15,7 @@ const Sobre = () => {
           <img src={logoF} alt="Official Arte Entretenimento" className="h-28 w-auto" />
         </div>
 
-        <div className="space-y-4 text-foreground/80 text-sm leading-relaxed font-body">
+        <div className="space-y-4 text-foreground/80 text-sm leading-relaxed font-body text-justify">
           <p>
             A <strong className="text-primary">OFFICIAL ARTE ENTRETENIMENTO</strong> é uma Indústria da Comunicação Social com objetivo de Industrializar e divulgar conteúdos Sociais e musicais,  promovendo artistas, lançamentos e eventos do cenário musical angolano e lusófono.
           </p>
