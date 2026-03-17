@@ -4,6 +4,7 @@ const categories = [
   { name: "FAMA", count: 195 },
   { name: "LANÇAMENTO", count: 7 },
   { name: "SOCIEDADE", count: 61 },
+  { name: "AGENDAS", count: 14 },
 ];
 
 const CategoriesFooter = () => {
