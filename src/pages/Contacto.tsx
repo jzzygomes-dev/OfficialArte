@@ -46,6 +46,14 @@ const Contacto = () => {
                   <p className="text-xs text-muted-foreground font-display uppercase">UNITEL</p>
                   <p className="text-sm text-foreground font-body">+244 946 785 478 | +244 946 785 479 | +244 946 785 480</p>
                 </div>
+              </div>
+
+              
+
+              <div className="flex items-center gap-3">
+                <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+                  <Phone className="w-5 h-5 text-primary" />
+                </div>
                 <div>
                   <p className="text-xs text-muted-foreground font-display uppercase">AFRICELL</p>
                   <p className="text-sm text-foreground font-body">+244 955 541 908</p>
