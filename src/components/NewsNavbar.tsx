@@ -1,5 +1,6 @@
 import { Search, Menu, X } from "lucide-react";
 import { useState } from "react";
+import logoH from "@/assets/oa-logo-h.png";
 
 const NewsNavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -18,9 +19,8 @@ const NewsNavbar = () => {
 
       {/* Main nav */}
       <div className="container mx-auto flex items-center justify-between py-3">
-        <a href="#" className="font-display text-2xl md:text-3xl font-extrabold uppercase tracking-tight text-primary leading-none">
-          Musico<span className="text-foreground">Mania</span>
-          <span className="block text-[10px] md:text-xs font-bold text-primary tracking-[0.3em]">NEWS</span>
+        <a href="#">
+          <img src={logoH} alt="Official Arte Entretenimento" className="h-10 md:h-12 w-auto" />
         </a>
 
         <nav className="hidden md:flex items-center gap-6">
