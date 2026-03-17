@@ -24,7 +24,7 @@ const NewsNavbar = () => {
         </a>
 
         <nav className="hidden md:flex items-center gap-6">
-          {["Home", "Lançamentos", "Fama", "Entrevistas", "Sociedade"].map((item) => (
+          {["Home", "Lançamentos", "Fama", "Entrevistas", "Sociedade", "Agendas"].map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
