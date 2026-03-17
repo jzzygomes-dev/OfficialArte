@@ -1,4 +1,5 @@
 import { Clock } from "lucide-react";
+import { Link } from "react-router-dom";
 import news1 from "@/assets/news-1.jpg";
 import news3 from "@/assets/news-3.jpg";
 import news6 from "@/assets/news-6.jpg";
