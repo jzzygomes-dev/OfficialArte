@@ -24,6 +24,7 @@ const latestNews = [
     excerpt: "O cantor angolano CEO da Ragazzo Records, Querido, tem surpreendido os seus fãs com singles após singles. Antes que o a...",
   },
   {
+    id: "5",
     image: news6,
     category: "LANÇAMENTO",
     title: "Querido & Tércio Santana voltam a impactar o mercado com novo videoclipe \"Drena\"",
