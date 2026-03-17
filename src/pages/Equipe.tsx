@@ -2,8 +2,8 @@ import NewsNavbar from "@/components/NewsNavbar";
 import NewsFooter from "@/components/NewsFooter";
 import team1 from "@/assets/ceo.webp";
 import team2 from "@/assets/member1.webp";
-import team3 from "@/assets/member2.webp";
-import team4 from "@/assets/team-4.jpg";
+import team4 from "@/assets/member.webp";
+import team3 from "@/assets/t.jpg";
 
 const team = [
   {
