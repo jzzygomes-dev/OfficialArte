@@ -23,7 +23,7 @@ const team = [
     role: "DIRECTOR DE CONTEÚDOS DIGITAIS",
     description: "Especialista em media digital e redes sociais, CEO JZZY que o nosso conteúdo chega ao público certo, no momento certo.",
     image: team3,
-  },
+  }
 ];
 
 const Equipe = () => {
