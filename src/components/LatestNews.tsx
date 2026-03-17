@@ -1,10 +1,12 @@
 import { Clock } from "lucide-react";
+import { Link } from "react-router-dom";
 import news1 from "@/assets/news-1.jpg";
 import news3 from "@/assets/news-3.jpg";
 import news6 from "@/assets/news-6.jpg";
 
 const latestNews = [
   {
+    id: "1",
     image: news1,
     category: "LANÇAMENTO",
     title: "Hélio Farsante lança novo single 'Dançar Sozinho'",
@@ -13,6 +15,7 @@ const latestNews = [
     excerpt: "O mercado angolano acaba de ganhar mais um talentoso artista, Hélio Farsante, uma voz promissora da música nacional. A...",
   },
   {
+    id: "3",
     image: news3,
     category: "LANÇAMENTO",
     title: "Querido presta homenagem aos ente queridos em \"Saudades\"",
@@ -21,6 +24,7 @@ const latestNews = [
     excerpt: "O cantor angolano CEO da Ragazzo Records, Querido, tem surpreendido os seus fãs com singles após singles. Antes que o a...",
   },
   {
+    id: "5",
     image: news6,
     category: "LANÇAMENTO",
     title: "Querido & Tércio Santana voltam a impactar o mercado com novo videoclipe \"Drena\"",
@@ -42,7 +46,7 @@ const LatestNews = () => {
 
       <div className="flex flex-col divide-y divide-border">
         {latestNews.map((news, i) => (
-          <a href="#" key={i} className="group flex gap-4 py-4 first:pt-0 last:pb-0">
+          <Link to={`/post/${news.id}`} key={i} className="group flex gap-4 py-4 first:pt-0 last:pb-0">
             <div className="flex-shrink-0 w-28 md:w-36 overflow-hidden rounded-sm">
               <img
                 src={news.image}
@@ -64,7 +68,7 @@ const LatestNews = () => {
                 {news.excerpt}
               </p>
             </div>
-          </a>
+          </Link>
         ))}
       </div>
 

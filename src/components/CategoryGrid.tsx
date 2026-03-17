@@ -1,4 +1,5 @@
 import { Clock } from "lucide-react";
+import { Link } from "react-router-dom";
 import news1 from "@/assets/news-1.jpg";
 import news2 from "@/assets/news-2.jpg";
 import news3 from "@/assets/news-3.jpg";
@@ -72,7 +73,7 @@ const CategoryGrid = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-4">
         {/* Large featured */}
-        <a href="#" className="group block">
+        <Link to="/post/2" className="group block">
           <div className="relative overflow-hidden rounded-sm">
             <img
               src={articles[0].image}
@@ -93,12 +94,12 @@ const CategoryGrid = () => {
             <Clock className="w-3 h-3" />
             <span>{articles[0].date}</span>
           </div>
-        </a>
+        </Link>
 
         {/* Small grid */}
         <div className="grid grid-cols-2 gap-3">
           {articles.slice(1).map((article, i) => (
-            <a href="#" key={i} className="group block">
+            <Link to={`/post/${i + 4}`} key={i} className="group block">
               <div className="relative overflow-hidden rounded-sm">
                 <img
                   src={article.image}
@@ -119,7 +120,7 @@ const CategoryGrid = () => {
                 <Clock className="w-2.5 h-2.5" />
                 <span>{article.date}</span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
