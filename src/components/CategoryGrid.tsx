@@ -99,7 +99,7 @@ const CategoryGrid = () => {
         {/* Small grid */}
         <div className="grid grid-cols-2 gap-3">
           {articles.slice(1).map((article, i) => (
-            <a href="#" key={i} className="group block">
+            <Link to={`/post/${i + 4}`} key={i} className="group block">
               <div className="relative overflow-hidden rounded-sm">
                 <img
                   src={article.image}
