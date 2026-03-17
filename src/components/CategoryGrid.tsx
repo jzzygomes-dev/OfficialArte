@@ -94,7 +94,7 @@ const CategoryGrid = () => {
             <Clock className="w-3 h-3" />
             <span>{articles[0].date}</span>
           </div>
-        </a>
+        </Link>
 
         {/* Small grid */}
         <div className="grid grid-cols-2 gap-3">
