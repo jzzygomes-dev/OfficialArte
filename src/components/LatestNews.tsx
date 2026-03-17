@@ -6,6 +6,7 @@ import news6 from "@/assets/news-6.jpg";
 
 const latestNews = [
   {
+    id: "1",
     image: news1,
     category: "LANÇAMENTO",
     title: "Hélio Farsante lança novo single 'Dançar Sozinho'",
