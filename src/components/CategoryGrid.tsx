@@ -120,7 +120,7 @@ const CategoryGrid = () => {
                 <Clock className="w-2.5 h-2.5" />
                 <span>{article.date}</span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>

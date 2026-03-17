@@ -27,7 +27,7 @@ const HeroArticle = () => {
               </div>
             </div>
           </div>
-        </a>
+        </Link>
 
         {/* Side text excerpt */}
         <div className="flex flex-col gap-4">
