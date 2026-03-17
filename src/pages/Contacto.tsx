@@ -33,8 +33,8 @@ const Contacto = () => {
                   <Mail className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground font-display uppercase">Email</p>
-                  <p className="text-sm text-foreground font-body">geral@officialarte.com</p>
+                  <p className="text-xs text-muted-foreground font-display uppercase">E-MAIL</p>
+                  <p className="text-sm text-foreground font-body">geral.aoe@gmail.com</p>
                 </div>
               </div>
 
@@ -43,8 +43,12 @@ const Contacto = () => {
                   <Phone className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground font-display uppercase">Telefone</p>
-                  <p className="text-sm text-foreground font-body">+244 923 456 789</p>
+                  <p className="text-xs text-muted-foreground font-display uppercase">UNITEL</p>
+                  <p className="text-sm text-foreground font-body">+244 946 785 478 | +244 946 785 479 | +244 946 785 480</p>
+                </div>
+                <div>
+                  <p className="text-xs text-muted-foreground font-display uppercase">AFRICELL</p>
+                  <p className="text-sm text-foreground font-body">+244 955 541 908</p>
                 </div>
               </div>
 
@@ -53,8 +57,8 @@ const Contacto = () => {
                   <MapPin className="w-5 h-5 text-primary" />
                 </div>
                 <div>
-                  <p className="text-xs text-muted-foreground font-display uppercase">Localização</p>
-                  <p className="text-sm text-foreground font-body">Luanda, Angola</p>
+                  <p className="text-xs text-muted-foreground font-display uppercase">LOCALIZAÇÃO</p>
+                  <p className="text-sm text-foreground font-body">Bengo-Panguila, Angola</p>
                 </div>
               </div>
             </div>
