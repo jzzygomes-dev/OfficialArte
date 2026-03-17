@@ -1,4 +1,5 @@
 import { Clock } from "lucide-react";
+import { Link } from "react-router-dom";
 import heroImg from "@/assets/news-hero.jpg";
 
 const HeroArticle = () => {
