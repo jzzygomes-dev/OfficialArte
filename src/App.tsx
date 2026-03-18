@@ -10,6 +10,8 @@ import Termos from "./pages/Termos.tsx";
 import Contacto from "./pages/Contacto.tsx";
 import Equipe from "./pages/Equipe.tsx";
 import PostDetail from "./pages/PostDetail.tsx";
+import Resultados from "./pages/Resultados.tsx";
+import Videos from "./pages/Videos.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();
@@ -28,6 +30,8 @@ const App = () => (
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/equipe" element={<Equipe />} />
           <Route path="/post/:id" element={<PostDetail />} />
+          <Route path="/resultados" element={<Resultados />} />
+          <Route path="/videos" element={<Videos />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
