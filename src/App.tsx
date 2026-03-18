@@ -10,6 +10,8 @@ import Termos from "./pages/Termos.tsx";
 import Contacto from "./pages/Contacto.tsx";
 import Equipe from "./pages/Equipe.tsx";
 import PostDetail from "./pages/PostDetail.tsx";
+import Resultados from "./pages/Resultados.tsx";
+import Videos from "./pages/Videos.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 const queryClient = new QueryClient();

@@ -24,11 +24,21 @@ function shuffleArray<T>(arr: T[]): T[] {
   return shuffled;
 }
 
+const navCategories = [
+  { label: "Home", to: "/", isHome: true },
+  { label: "Lançamentos", to: "/resultados?tag=lancamento" },
+  { label: "Fama", to: "/resultados?tag=fama" },
+  { label: "Entrevistas", to: "/resultados?tag=entrevista" },
+  { label: "Sociedade", to: "/resultados?tag=sociedade" },
+  { label: "Agendas", to: "/#agendas", isHome: true },
+];
+
 const NewsNavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [titles] = useState(() => shuffleArray(allTrendingTitles));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -61,23 +71,44 @@ const NewsNavbar = () => {
 
       {/* Main nav */}
       <div className="container mx-auto flex items-center justify-between py-3">
-        <a href="#">
+        <Link to="/">
           <img src={logoH} alt="Official Arte Entretenimento" className="h-10 md:h-12 w-auto" />
-        </a>
+        </Link>
 
         <nav className="hidden md:flex items-center gap-6">
-          {["Home", "Lançamentos", "Fama", "Entrevistas", "Sociedade", "Agendas"].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
+          {navCategories.map((item) => (
+            <Link
+              key={item.label}
+              to={item.to}
               className="text-foreground hover:text-primary transition-colors text-sm font-semibold uppercase tracking-wide font-display"
             >
-              {item}
-            </a>
+              {item.label}
+            </Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-3">
+          <button
+            onClick={() => navigate("/resultados?tag=musica")}
+            className="text-muted-foreground hover:text-foreground transition-colors"
+            title="Música"
+          >
+            <Music className="w-5 h-5" />
+          </button>
+          <Link
+            to="/equipe"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+            title="Nossa Equipe"
+          >
+            <Users className="w-5 h-5" />
+          </Link>
+          <Link
+            to="/videos"
+            className="text-muted-foreground hover:text-foreground transition-colors"
+            title="Vídeos & Podcasts"
+          >
+            <Video className="w-5 h-5" />
+          </Link>
           <button className="text-muted-foreground hover:text-foreground transition-colors">
             <Search className="w-5 h-5" />
           </button>
@@ -93,15 +124,15 @@ const NewsNavbar = () => {
       {/* Mobile menu */}
       {menuOpen && (
         <div className="md:hidden border-t border-border bg-background pb-4">
-          {["Home", "Lançamentos", "Fama", "Entrevistas", "Sociedade", "Agendas"].map((item) => (
-            <a
-              key={item}
-              href={`#${item.toLowerCase()}`}
+          {navCategories.map((item) => (
+            <Link
+              key={item.label}
+              to={item.to}
               className="block px-4 py-2.5 text-foreground hover:bg-muted text-sm font-semibold uppercase tracking-wide font-display"
               onClick={() => setMenuOpen(false)}
             >
-              {item}
-            </a>
+              {item.label}
+            </Link>
           ))}
         </div>
       )}
