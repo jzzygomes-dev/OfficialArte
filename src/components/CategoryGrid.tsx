@@ -149,6 +149,10 @@ const CategoryGrid = () => {
 
       <div
         ref={scrollRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onTouchStart={handleMouseEnter}
+        onTouchEnd={handleMouseLeave}
         className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory -mx-4 px-4"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
