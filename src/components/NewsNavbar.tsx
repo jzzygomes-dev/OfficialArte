@@ -1,5 +1,6 @@
-import { Search, Menu, X } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { Search, Menu, X, Music, Users, Video } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logoH from "@/assets/oa-logo-h.png";
 
 const allTrendingTitles = [
