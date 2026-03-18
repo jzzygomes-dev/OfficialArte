@@ -1,5 +1,6 @@
-import { Clock } from "lucide-react";
+import { Clock, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useRef, useState, useCallback, useEffect } from "react";
 import news1 from "@/assets/news-1.jpg";
 import news2 from "@/assets/news-2.jpg";
 import news3 from "@/assets/news-3.jpg";
@@ -65,64 +66,87 @@ const badgeClass = (type: string) => {
 };
 
 const CategoryGrid = () => {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const checkScroll = useCallback(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 4);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
+  }, []);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    checkScroll();
+    el.addEventListener("scroll", checkScroll, { passive: true });
+    return () => el.removeEventListener("scroll", checkScroll);
+  }, [checkScroll]);
+
+  const scroll = (dir: "left" | "right") => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const amount = el.clientWidth * 0.75;
+    el.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
+  };
+
   return (
     <section id="fama" className="container mx-auto py-6">
-      <div className="flex justify-center mb-6">
+      <div className="flex items-center justify-between mb-6">
         <span className="section-title">FAMA</span>
+        <div className="flex gap-1.5">
+          <button
+            onClick={() => scroll("left")}
+            disabled={!canScrollLeft}
+            className="w-8 h-8 rounded-full border border-border flex items-center justify-center text-foreground hover:bg-muted transition-colors disabled:opacity-30 disabled:cursor-default"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          <button
+            onClick={() => scroll("right")}
+            disabled={!canScrollRight}
+            className="w-8 h-8 rounded-full border border-border flex items-center justify-center text-foreground hover:bg-muted transition-colors disabled:opacity-30 disabled:cursor-default"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-[1fr_1fr] gap-4">
-        {/* Large featured */}
-        <Link to="/post/2" className="group block">
-          <div className="relative overflow-hidden rounded-sm">
-            <img
-              src={articles[0].image}
-              alt={articles[0].title}
-              className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
-            />
-            <div className="absolute bottom-0 left-0">
-              <span className={badgeClass(articles[0].categoryType)}>
-                {articles[0].category}
-              </span>
+      <div
+        ref={scrollRef}
+        className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory -mx-4 px-4"
+        style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+      >
+        {articles.map((article, i) => (
+          <Link
+            to={`/post/${i + 2}`}
+            key={i}
+            className="group block flex-shrink-0 w-[70vw] md:w-[45%] lg:w-[30%] snap-start"
+          >
+            <div className="relative overflow-hidden rounded-sm">
+              <img
+                src={article.image}
+                alt={article.title}
+                className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute bottom-0 left-0">
+                <span className={badgeClass(article.categoryType)}>
+                  {article.category}
+                </span>
+              </div>
             </div>
-          </div>
-          <h3 className="font-display text-base md:text-lg font-bold text-foreground leading-snug mt-2">
-            {articles[0].title}
-          </h3>
-          <div className="flex items-center gap-2 mt-1 text-muted-foreground text-xs">
-            <span>{articles[0].author}</span>
-            <Clock className="w-3 h-3" />
-            <span>{articles[0].date}</span>
-          </div>
-        </Link>
-
-        {/* Small grid */}
-        <div className="grid grid-cols-2 gap-3">
-          {articles.slice(1).map((article, i) => (
-            <Link to={`/post/${i + 4}`} key={i} className="group block">
-              <div className="relative overflow-hidden rounded-sm">
-                <img
-                  src={article.image}
-                  alt={article.title}
-                  className="w-full aspect-square object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute bottom-0 left-0">
-                  <span className={badgeClass(article.categoryType)}>
-                    {article.category}
-                  </span>
-                </div>
-              </div>
-              <h4 className="font-display text-xs md:text-sm font-bold text-foreground leading-snug mt-1.5 line-clamp-3">
-                {article.title}
-              </h4>
-              <div className="flex items-center gap-1 mt-1 text-muted-foreground text-[10px]">
-                <span>{article.author}</span>
-                <Clock className="w-2.5 h-2.5" />
-                <span>{article.date}</span>
-              </div>
-            </Link>
-          ))}
-        </div>
+            <h3 className="font-display text-sm md:text-base font-bold text-foreground leading-snug mt-2 line-clamp-2">
+              {article.title}
+            </h3>
+            <div className="flex items-center gap-2 mt-1 text-muted-foreground text-xs">
+              <span>{article.author}</span>
+              <Clock className="w-3 h-3" />
+              <span>{article.date}</span>
+            </div>
+          </Link>
+        ))}
       </div>
     </section>
   );

@@ -1,19 +1,60 @@
 import { Search, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import logoH from "@/assets/oa-logo-h.png";
+
+const allTrendingTitles = [
+  "Artista angolano lança novo single que está a conquistar o mercado",
+  "Artista protagoniza espectáculo memorável no Centro Cultural",
+  "Cantora expressa carinho por colega de profissão: \"gosto de ti\"",
+  "Rapper presta homenagem ao ídolo: \"A ideia é ser referência\"",
+  "Produtor destaca mestria na composição do seu novo single",
+  "Jovem cantor pede desculpas à artista após afirmar que namorou com a cantora",
+  "Hélio Farsante lança novo single 'Dançar Sozinho'",
+  "Querido presta homenagem aos ente queridos em \"Saudades\"",
+  "Querido & Tércio Santana voltam a impactar o mercado com novo videoclipe \"Drena\"",
+];
+
+function shuffleArray<T>(arr: T[]): T[] {
+  const shuffled = [...arr];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
 
 const NewsNavbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [titles] = useState(() => shuffleArray(allTrendingTitles));
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsAnimating(true);
+      setTimeout(() => {
+        setCurrentIndex((prev) => (prev + 1) % titles.length);
+        setIsAnimating(false);
+      }, 400);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [titles.length]);
 
   return (
     <header className="bg-background border-b border-border sticky top-0 z-50">
-      {/* Trending bar */}
-      <div className="bg-accent text-accent-foreground">
+      {/* Trending ticker */}
+      <div className="bg-accent text-accent-foreground overflow-hidden">
         <div className="container mx-auto flex items-center gap-2 py-1.5 text-xs">
-          <span className="font-bold text-primary uppercase tracking-wider font-display">🔥 Tendência</span>
-          <span className="truncate text-accent-foreground/80">
-            Artista angolano lança novo single que está a conquistar o mercado
-          </span>
+          <span className="font-bold text-primary uppercase tracking-wider font-display flex-shrink-0">🔥 Tendência</span>
+          <div className="overflow-hidden flex-1 min-w-0">
+            <span
+              className={`block truncate text-accent-foreground/80 transition-all duration-400 ${
+                isAnimating ? "opacity-0 -translate-y-3" : "opacity-100 translate-y-0"
+              }`}
+            >
+              {titles[currentIndex]}
+            </span>
+          </div>
         </div>
       </div>
 
