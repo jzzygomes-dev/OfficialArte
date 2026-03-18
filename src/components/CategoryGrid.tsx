@@ -69,6 +69,8 @@ const CategoryGrid = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
+  const pauseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const checkScroll = useCallback(() => {
     const el = scrollRef.current;
@@ -91,6 +93,37 @@ const CategoryGrid = () => {
     const amount = el.clientWidth * 0.75;
     el.scrollBy({ left: dir === "left" ? -amount : amount, behavior: "smooth" });
   };
+
+  // Autoplay: scroll right, loop back to start
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(() => {
+      const el = scrollRef.current;
+      if (!el) return;
+      const atEnd = el.scrollLeft >= el.scrollWidth - el.clientWidth - 4;
+      if (atEnd) {
+        el.scrollTo({ left: 0, behavior: "smooth" });
+      } else {
+        scroll("right");
+      }
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [isPaused]);
+
+  const handleMouseEnter = () => {
+    setIsPaused(true);
+    if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
+  };
+
+  const handleMouseLeave = () => {
+    pauseTimerRef.current = setTimeout(() => setIsPaused(false), 4000);
+  };
+
+  useEffect(() => {
+    return () => {
+      if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
+    };
+  }, []);
 
   return (
     <section id="fama" className="container mx-auto py-6">
@@ -116,6 +149,10 @@ const CategoryGrid = () => {
 
       <div
         ref={scrollRef}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onTouchStart={handleMouseEnter}
+        onTouchEnd={handleMouseLeave}
         className="flex gap-4 overflow-x-auto scrollbar-hide snap-x snap-mandatory -mx-4 px-4"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
