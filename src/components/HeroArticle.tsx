@@ -65,7 +65,7 @@ const HeroArticle = () => {
       </section>
 
       {/* Featured post below hero */}
-      <section className="container mx-auto px-4 -mt-6 md:-mt-10 relative z-20 pb-6">
+      <section className="container mx-auto px-4 mt-6 md:mt-10 relative z-20 pb-6">
         <Link to="/post/1" className="group block">
           <div className="relative overflow-hidden rounded-lg shadow-lg">
             <img
