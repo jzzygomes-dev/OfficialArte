@@ -1,4 +1,4 @@
-import { Clock, Music, Disc3, TrendingUp, Users } from "lucide-react";
+import { Clock, Music, Users, Video } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import heroImg from "@/assets/news-hero.jpg";
 
