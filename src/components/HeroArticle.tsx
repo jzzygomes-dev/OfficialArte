@@ -40,13 +40,14 @@ const HeroArticle = () => {
 
           {/* Category pills */}
           <div className="flex flex-wrap justify-center gap-3 mb-12">
-            {["Lançamentos", "Entrevistas", "Fama", "Sociedade"].map((cat) => (
-              <span
-                key={cat}
-                className="bg-primary-foreground/15 backdrop-blur-sm text-primary-foreground text-xs md:text-sm font-display font-semibold uppercase tracking-wider px-5 py-2 rounded-full border border-primary-foreground/20"
+            {categoryLinks.map((cat) => (
+              <Link
+                key={cat.label}
+                to={`/resultados?tag=${cat.tag}`}
+                className="bg-primary-foreground/15 backdrop-blur-sm text-primary-foreground text-xs md:text-sm font-display font-semibold uppercase tracking-wider px-5 py-2 rounded-full border border-primary-foreground/20 hover:bg-primary-foreground/25 transition-colors"
               >
-                {cat}
-              </span>
+                {cat.label}
+              </Link>
             ))}
           </div>
 
