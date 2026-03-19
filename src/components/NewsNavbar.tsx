@@ -1,6 +1,6 @@
-import { Search, Menu, X, Music, Users, Video } from "lucide-react";
+import { Search, Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logoH from "@/assets/oa-logo-h.png";
 
 const allTrendingTitles = [
@@ -38,7 +38,7 @@ const NewsNavbar = () => {
   const [titles] = useState(() => shuffleArray(allTrendingTitles));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const navigate = useNavigate();
+  
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -88,27 +88,6 @@ const NewsNavbar = () => {
         </nav>
 
         <div className="flex items-center gap-3">
-          <button
-            onClick={() => navigate("/resultados?tag=musica")}
-            className="text-muted-foreground hover:text-foreground transition-colors"
-            title="Música"
-          >
-            <Music className="w-5 h-5" />
-          </button>
-          <Link
-            to="/equipe"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-            title="Nossa Equipe"
-          >
-            <Users className="w-5 h-5" />
-          </Link>
-          <Link
-            to="/videos"
-            className="text-muted-foreground hover:text-foreground transition-colors"
-            title="Vídeos & Podcasts"
-          >
-            <Video className="w-5 h-5" />
-          </Link>
           <button className="text-muted-foreground hover:text-foreground transition-colors">
             <Search className="w-5 h-5" />
           </button>

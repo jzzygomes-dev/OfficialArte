@@ -2,10 +2,10 @@ import { Clock, Music, Disc3, TrendingUp, Users } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import heroImg from "@/assets/news-hero.jpg";
 
-const stats = [
-  { icon: Music, value: "500+", label: "Músicas Publicadas" },
-  { icon: Users, value: "50k+", label: "Leitores Mensais" },
-  { icon: TrendingUp, value: "200+", label: "Artistas Cobertos" },
+const heroIcons = [
+  { icon: Music, label: "Música", to: "/resultados?tag=musica" },
+  { icon: Users, label: "Nossa Equipe", to: "/equipe" },
+  { icon: TrendingUp, label: "Vídeos & Podcasts", to: "/videos" },
 ];
 
 const categoryLinks = [
@@ -53,10 +53,15 @@ const HeroArticle = () => {
 
           {/* Stats */}
           <div className="flex justify-center gap-6">
-            {stats.map(({ icon: Icon, label }) => (
-              <div key={label} className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-primary-foreground/15 backdrop-blur-sm flex items-center justify-center">
+            {heroIcons.map(({ icon: Icon, label, to }) => (
+              <Link
+                key={label}
+                to={to}
+                title={label}
+                className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-primary-foreground/15 backdrop-blur-sm flex items-center justify-center hover:bg-primary-foreground/25 transition-colors"
+              >
                 <Icon className="w-5 h-5 md:w-6 md:h-6 text-secondary" />
-              </div>
+              </Link>
             ))}
           </div>
         </div>
