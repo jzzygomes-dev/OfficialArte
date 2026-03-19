@@ -3,6 +3,7 @@ import HeroArticle from "@/components/HeroArticle";
 import CategoryGrid from "@/components/CategoryGrid";
 import LatestNews from "@/components/LatestNews";
 import CategoriesFooter from "@/components/CategoriesFooter";
+import InterestsSection from "@/components/InterestsSection";
 import NewsFooter from "@/components/NewsFooter";
 
 const Index = () => {
@@ -13,6 +14,7 @@ const Index = () => {
       <CategoryGrid />
       <LatestNews />
       <CategoriesFooter />
+      <InterestsSection />
       <NewsFooter />
     </div>
   );
