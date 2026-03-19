@@ -53,10 +53,15 @@ const HeroArticle = () => {
 
           {/* Stats */}
           <div className="flex justify-center gap-6">
-            {stats.map(({ icon: Icon, label }) => (
-              <div key={label} className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-primary-foreground/15 backdrop-blur-sm flex items-center justify-center">
+            {heroIcons.map(({ icon: Icon, label, to }) => (
+              <Link
+                key={label}
+                to={to}
+                title={label}
+                className="w-12 h-12 md:w-14 md:h-14 rounded-xl bg-primary-foreground/15 backdrop-blur-sm flex items-center justify-center hover:bg-primary-foreground/25 transition-colors"
+              >
                 <Icon className="w-5 h-5 md:w-6 md:h-6 text-secondary" />
-              </div>
+              </Link>
             ))}
           </div>
         </div>
