@@ -1,11 +1,11 @@
-import { Clock, Music, Disc3, TrendingUp, Users } from "lucide-react";
+import { Clock, Music, Users, Video } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import heroImg from "@/assets/news-hero.jpg";
 
 const heroIcons = [
   { icon: Music, label: "Música", to: "/resultados?tag=musica" },
   { icon: Users, label: "Nossa Equipe", to: "/equipe" },
-  { icon: TrendingUp, label: "Vídeos & Podcasts", to: "/videos" },
+  { icon: Video, label: "Vídeos & Podcasts", to: "/videos" },
 ];
 
 const categoryLinks = [
