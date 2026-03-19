@@ -8,6 +8,13 @@ const stats = [
   { icon: TrendingUp, value: "200+", label: "Artistas Cobertos" },
 ];
 
+const categoryLinks = [
+  { label: "Lançamentos", tag: "lancamento" },
+  { label: "Entrevistas", tag: "entrevista" },
+  { label: "Fama", tag: "fama" },
+  { label: "Sociedade", tag: "sociedade" },
+];
+
 const HeroArticle = () => {
   return (
     <>
