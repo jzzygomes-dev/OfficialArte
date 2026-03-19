@@ -38,7 +38,7 @@ const NewsNavbar = () => {
   const [titles] = useState(() => shuffleArray(allTrendingTitles));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
-  const navigate = useNavigate();
+  
 
   useEffect(() => {
     const interval = setInterval(() => {
