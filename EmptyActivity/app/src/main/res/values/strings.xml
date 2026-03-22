@@ -9,4 +9,8 @@
     <string name="update_message">Uma nova versão do OfficialArte está disponível. Deseja atualizar?</string>
     <string name="update_now">Atualizar</string>
     <string name="later">Mais tarde</string>
+    <string name="check_update">Verificar atualização</string>
+    <string name="no_update">Tudo atualizado</string>
+    <string name="no_update_message">Você já tem a versão mais recente do OfficialArte.</string>
+    <string name="ok">OK</string>
 </resources>

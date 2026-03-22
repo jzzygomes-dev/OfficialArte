@@ -48,4 +48,5 @@ dependencies {
     implementation(libs.androidx.webkit)
     implementation(libs.androidx.splashscreen)
     implementation(libs.kotlinx.coroutines.android)
+    implementation(libs.androidx.swiperefreshlayout)
 }

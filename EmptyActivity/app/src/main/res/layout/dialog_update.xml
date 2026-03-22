@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_bg"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="28dp">
+
+    <ImageView
+        android:id="@+id/updateIcon"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
+        android:id="@+id/updateTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/white"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/updateVersion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:textColor="@color/accent"
+        android:textSize="14sp"
+        android:fontFamily="sans-serif" />
+
+    <TextView
+        android:id="@+id/updateChangelog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:lineSpacingExtra="4dp"
+        android:textColor="@color/gray_light"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/btnUpdate"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/btn_retry_bg"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/update_now"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <Button
+        android:id="@+id/btnLater"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/later"
+        android:textAllCaps="false"
+        android:textColor="@color/gray_light"
+        android:textSize="14sp" />
+
+</LinearLayout>
