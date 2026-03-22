@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">OfficialArte</string>
+    <string name="base_url">https://officialarte.vercel.app/</string>
+    <string name="no_connection">Sem ligação à Internet</string>
+    <string name="no_connection_message">Verifique a sua conexão e tente novamente.</string>
+    <string name="retry">Tentar novamente</string>
+    <string name="update_available">Atualização disponível</string>
+    <string name="update_message">Uma nova versão do OfficialArte está disponível. Deseja atualizar?</string>
+    <string name="update_now">Atualizar</string>
+    <string name="later">Mais tarde</string>
+</resources>
