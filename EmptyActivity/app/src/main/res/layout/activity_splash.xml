@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_gradient">
+
+    <!-- Glow effect behind logo -->
+    <ImageView
+        android:id="@+id/glowCircle"
+        android:layout_width="240dp"
+        android:layout_height="240dp"
+        android:layout_gravity="center"
+        android:alpha="0"
+        android:src="@drawable/glow_circle"
+        android:contentDescription="glow" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/splashLogo"
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:alpha="0"
+            android:scaleX="0.6"
+            android:scaleY="0.6"
+            android:src="@mipmap/ic_launcher_foreground"
+            android:contentDescription="@string/app_name" />
+
+        <TextView
+            android:id="@+id/splashTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:alpha="0"
+            android:fontFamily="sans-serif-medium"
+            android:letterSpacing="0.15"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="28sp"
+            android:translationY="30" />
+
+        <View
+            android:id="@+id/accentLine"
+            android:layout_width="0dp"
+            android:layout_height="3dp"
+            android:layout_marginTop="12dp"
+            android:background="@color/accent" />
+
+    </LinearLayout>
+
+    <com.google.android.material.progressindicator.CircularProgressIndicator
+        android:id="@+id/splashProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_marginBottom="80dp"
+        android:alpha="0"
+        android:indeterminate="true"
+        app:indicatorColor="@color/accent"
+        app:trackColor="@android:color/transparent"
+        app:indicatorSize="36dp"
+        app:trackThickness="3dp"
+        xmlns:app="http://schemas.android.com/apk/res-auto" />
+
+</FrameLayout>
