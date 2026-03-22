@@ -34,7 +34,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setupWebView()
+        setupSwipeRefresh()
         setupOfflineRetry()
+        setupUpdateButton()
         registerNetworkListener()
 
         if (NetworkUtil.isOnline(this)) {
@@ -67,9 +69,8 @@ class MainActivity : AppCompatActivity() {
                 ): Boolean {
                     val url = request?.url ?: return false
                     return if (url.host == baseHost) {
-                        false // Let WebView handle same-domain
+                        false
                     } else {
-                        // Open external URLs in browser
                         startActivity(Intent(Intent.ACTION_VIEW, url))
                         true
                     }
@@ -83,6 +84,7 @@ class MainActivity : AppCompatActivity() {
                 override fun onPageFinished(view: WebView?, url: String?) {
                     super.onPageFinished(view, url)
                     binding.progressBar.visibility = View.GONE
+                    binding.swipeRefresh.isRefreshing = false
                     showWebView()
                 }
 
@@ -92,6 +94,7 @@ class MainActivity : AppCompatActivity() {
                     error: WebResourceError?
                 ) {
                     if (request?.isForMainFrame == true && !NetworkUtil.isOnline(this@MainActivity)) {
+                        binding.swipeRefresh.isRefreshing = false
                         showOffline()
                     }
                 }
@@ -105,6 +108,19 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupSwipeRefresh() {
+        binding.swipeRefresh.setColorSchemeResources(R.color.accent)
+        binding.swipeRefresh.setProgressBackgroundColorSchemeResource(R.color.background_dark)
+        binding.swipeRefresh.setOnRefreshListener {
+            if (NetworkUtil.isOnline(this)) {
+                binding.webView.reload()
+            } else {
+                binding.swipeRefresh.isRefreshing = false
+                showOffline()
+            }
+        }
+    }
+
     private fun setupOfflineRetry() {
         binding.btnRetry.setOnClickListener {
             if (NetworkUtil.isOnline(this)) {
@@ -114,15 +130,25 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupUpdateButton() {
+        binding.btnCheckUpdate.setOnClickListener {
+            lifecycleScope.launch {
+                UpdateChecker.check(this@MainActivity, silent = false)
+            }
+        }
+    }
+
     private fun showOffline() {
         binding.offlineLayout.visibility = View.VISIBLE
-        binding.webView.visibility = View.GONE
+        binding.swipeRefresh.visibility = View.GONE
         binding.progressBar.visibility = View.GONE
+        binding.btnCheckUpdate.visibility = View.GONE
     }
 
     private fun showWebView() {
         binding.offlineLayout.visibility = View.GONE
-        binding.webView.visibility = View.VISIBLE
+        binding.swipeRefresh.visibility = View.VISIBLE
+        binding.btnCheckUpdate.visibility = View.VISIBLE
     }
 
     private fun registerNetworkListener() {
@@ -144,7 +170,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun checkForUpdates() {
         lifecycleScope.launch {
-            UpdateChecker.check(this@MainActivity)
+            UpdateChecker.check(this@MainActivity, silent = true)
         }
     }
 

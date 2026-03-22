@@ -4,10 +4,17 @@
     android:layout_height="match_parent"
     android:background="@color/background_dark">
 
-    <WebView
-        android:id="@+id/webView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefresh"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -19,6 +26,21 @@
         android:max="100"
         android:progressDrawable="@drawable/progress_accent"
         android:visibility="gone" />
+
+    <!-- Manual update check button -->
+    <ImageButton
+        android:id="@+id/btnCheckUpdate"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="20dp"
+        android:alpha="0.5"
+        android:background="@drawable/btn_update_bg"
+        android:contentDescription="@string/check_update"
+        android:padding="8dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_update_check" />
 
     <!-- Offline overlay -->
     <LinearLayout
