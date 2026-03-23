@@ -1,10 +1,13 @@
 package geral.official.arte.ui
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.ConnectivityManager
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.View
@@ -14,7 +17,10 @@ import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import geral.official.arte.R
 import geral.official.arte.databinding.ActivityMainBinding
@@ -28,6 +34,15 @@ class MainActivity : AppCompatActivity() {
     private val baseHost = "officialarte.vercel.app"
     private var networkCallback: ConnectivityManager.NetworkCallback? = null
 
+    private val notificationPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { /* granted or denied – no extra action needed */ }
+
+    companion object {
+        private const val PREF_NAME = "officialarte_prefs"
+        private const val KEY_NOTIF_ASKED = "notification_permission_asked"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -39,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         setupErrorRetry()
         setupMenu()
         registerNetworkListener()
+        askNotificationPermission()
 
         if (NetworkUtil.isOnline(this)) {
             binding.webView.loadUrl(getString(R.string.base_url))
@@ -262,6 +278,29 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launch {
             UpdateChecker.check(this@MainActivity, silent = true)
         }
+    }
+
+    private fun askNotificationPermission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return
+
+        val prefs = getSharedPreferences(PREF_NAME, MODE_PRIVATE)
+        if (prefs.getBoolean(KEY_NOTIF_ASKED, false)) return
+
+        prefs.edit().putBoolean(KEY_NOTIF_ASKED, true).apply()
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+            == PackageManager.PERMISSION_GRANTED
+        ) return
+
+        AlertDialog.Builder(this, R.style.Theme_OfficialArte_Dialog)
+            .setTitle("Ativar Notificações")
+            .setMessage("Gostaria de receber novidades sobre arte, cultura e lançamentos exclusivos do OfficialArte?")
+            .setPositiveButton("Ativar") { _, _ ->
+                notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
+            .setNegativeButton("Agora não", null)
+            .setCancelable(true)
+            .show()
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
