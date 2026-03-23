@@ -34,6 +34,15 @@ class MainActivity : AppCompatActivity() {
     private val baseHost = "officialarte.vercel.app"
     private var networkCallback: ConnectivityManager.NetworkCallback? = null
 
+    private val notificationPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { /* granted or denied – no extra action needed */ }
+
+    companion object {
+        private const val PREF_NAME = "officialarte_prefs"
+        private const val KEY_NOTIF_ASKED = "notification_permission_asked"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
