@@ -55,13 +55,13 @@
         android:focusable="true" />
 
     <TextView
-        android:id="@+id/devGithub"
+        android:id="@+id/devFacebook"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:drawableStart="@drawable/ic_link"
+        android:drawableStart="@drawable/ic_facebook"
         android:drawablePadding="12dp"
-        android:text="@string/dev_github"
+        android:text="@string/dev_facebook"
         android:textColor="@color/gray_light"
         android:textSize="15sp"
         android:clickable="true"
@@ -72,7 +72,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:drawableStart="@drawable/ic_link"
+        android:drawableStart="@drawable/ic_instagram"
         android:drawablePadding="12dp"
         android:text="@string/dev_instagram"
         android:textColor="@color/gray_light"
