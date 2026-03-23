@@ -65,4 +65,6 @@ dependencies {
     implementation(libs.androidx.splashscreen)
     implementation(libs.kotlinx.coroutines.android)
     implementation(libs.androidx.swiperefreshlayout)
+    implementation(platform(libs.firebase.bom))
+    implementation(libs.firebase.messaging)
 }
