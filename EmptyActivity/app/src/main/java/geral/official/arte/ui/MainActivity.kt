@@ -280,6 +280,29 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun askNotificationPermission() {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return
+
+        val prefs = getSharedPreferences(PREF_NAME, MODE_PRIVATE)
+        if (prefs.getBoolean(KEY_NOTIF_ASKED, false)) return
+
+        prefs.edit().putBoolean(KEY_NOTIF_ASKED, true).apply()
+
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
+            == PackageManager.PERMISSION_GRANTED
+        ) return
+
+        AlertDialog.Builder(this, R.style.Theme_OfficialArte_Dialog)
+            .setTitle("Ativar Notificações")
+            .setMessage("Gostaria de receber novidades sobre arte, cultura e lançamentos exclusivos do OfficialArte?")
+            .setPositiveButton("Ativar") { _, _ ->
+                notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+            }
+            .setNegativeButton("Agora não", null)
+            .setCancelable(true)
+            .show()
+    }
+
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (binding.menuOverlay.visibility == View.VISIBLE) {
