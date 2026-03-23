@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         setupErrorRetry()
         setupMenu()
         registerNetworkListener()
+        askNotificationPermission()
 
         if (NetworkUtil.isOnline(this)) {
             binding.webView.loadUrl(getString(R.string.base_url))
