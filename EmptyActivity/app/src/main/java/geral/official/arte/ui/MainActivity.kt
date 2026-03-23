@@ -36,7 +36,8 @@ class MainActivity : AppCompatActivity() {
         setupWebView()
         setupSwipeRefresh()
         setupOfflineRetry()
-        setupUpdateButton()
+        setupErrorRetry()
+        setupMenu()
         registerNetworkListener()
 
         if (NetworkUtil.isOnline(this)) {
@@ -93,9 +94,54 @@ class MainActivity : AppCompatActivity() {
                     request: WebResourceRequest?,
                     error: WebResourceError?
                 ) {
-                    if (request?.isForMainFrame == true && !NetworkUtil.isOnline(this@MainActivity)) {
+                    if (request?.isForMainFrame == true) {
+                        // Stop the default error page from showing
+                        view?.stopLoading()
+                        view?.loadUrl("about:blank")
+
                         binding.swipeRefresh.isRefreshing = false
+
+                        if (!NetworkUtil.isOnline(this@MainActivity)) {
+                            showOffline()
+                        } else {
+                            showServerError()
+                        }
+                    }
+                }
+
+                @Deprecated("Deprecated in Java")
+                override fun onReceivedError(
+                    view: WebView?,
+                    errorCode: Int,
+                    description: String?,
+                    failingUrl: String?
+                ) {
+                    // For API < 23
+                    view?.stopLoading()
+                    view?.loadUrl("about:blank")
+
+                    binding.swipeRefresh.isRefreshing = false
+
+                    if (!NetworkUtil.isOnline(this@MainActivity)) {
                         showOffline()
+                    } else {
+                        showServerError()
+                    }
+                }
+
+                override fun onReceivedHttpError(
+                    view: WebView?,
+                    request: WebResourceRequest?,
+                    errorResponse: android.webkit.WebResourceResponse?
+                ) {
+                    if (request?.isForMainFrame == true) {
+                        val statusCode = errorResponse?.statusCode ?: 0
+                        if (statusCode >= 500) {
+                            view?.stopLoading()
+                            view?.loadUrl("about:blank")
+                            binding.swipeRefresh.isRefreshing = false
+                            showServerError()
+                        }
                     }
                 }
             }
@@ -130,25 +176,69 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupUpdateButton() {
-        binding.btnCheckUpdate.setOnClickListener {
+    private fun setupErrorRetry() {
+        binding.btnRetryError.setOnClickListener {
+            if (NetworkUtil.isOnline(this)) {
+                showWebView()
+                binding.webView.loadUrl(getString(R.string.base_url))
+            } else {
+                showOffline()
+            }
+        }
+    }
+
+    private fun setupMenu() {
+        binding.btnMenu.setOnClickListener {
+            binding.menuOverlay.visibility = View.VISIBLE
+        }
+
+        binding.menuOverlay.setOnClickListener {
+            binding.menuOverlay.visibility = View.GONE
+        }
+
+        binding.menuCheckUpdate.setOnClickListener {
+            binding.menuOverlay.visibility = View.GONE
             lifecycleScope.launch {
                 UpdateChecker.check(this@MainActivity, silent = false)
             }
+        }
+
+        binding.menuAbout.setOnClickListener {
+            binding.menuOverlay.visibility = View.GONE
+            binding.webView.loadUrl(getString(R.string.about_url))
+        }
+
+        binding.menuDeveloper.setOnClickListener {
+            binding.menuOverlay.visibility = View.GONE
+            startActivity(Intent(this, DeveloperActivity::class.java))
+        }
+
+        binding.menuClose.setOnClickListener {
+            binding.menuOverlay.visibility = View.GONE
         }
     }
 
     private fun showOffline() {
         binding.offlineLayout.visibility = View.VISIBLE
+        binding.errorLayout.visibility = View.GONE
         binding.swipeRefresh.visibility = View.GONE
         binding.progressBar.visibility = View.GONE
-        binding.btnCheckUpdate.visibility = View.GONE
+        binding.btnMenu.visibility = View.GONE
+    }
+
+    private fun showServerError() {
+        binding.errorLayout.visibility = View.VISIBLE
+        binding.offlineLayout.visibility = View.GONE
+        binding.swipeRefresh.visibility = View.GONE
+        binding.progressBar.visibility = View.GONE
+        binding.btnMenu.visibility = View.GONE
     }
 
     private fun showWebView() {
         binding.offlineLayout.visibility = View.GONE
+        binding.errorLayout.visibility = View.GONE
         binding.swipeRefresh.visibility = View.VISIBLE
-        binding.btnCheckUpdate.visibility = View.VISIBLE
+        binding.btnMenu.visibility = View.VISIBLE
     }
 
     private fun registerNetworkListener() {
@@ -175,9 +265,15 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onKeyDown(keyCode: Int, event: KeyEvent?): Boolean {
-        if (keyCode == KeyEvent.KEYCODE_BACK && binding.webView.canGoBack()) {
-            binding.webView.goBack()
-            return true
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (binding.menuOverlay.visibility == View.VISIBLE) {
+                binding.menuOverlay.visibility = View.GONE
+                return true
+            }
+            if (binding.webView.canGoBack()) {
+                binding.webView.goBack()
+                return true
+            }
         }
         return super.onKeyDown(keyCode, event)
     }

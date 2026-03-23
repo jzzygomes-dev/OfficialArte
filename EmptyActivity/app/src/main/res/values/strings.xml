@@ -2,8 +2,11 @@
 <resources>
     <string name="app_name">OfficialArte</string>
     <string name="base_url">https://officialarte.vercel.app/</string>
+    <string name="about_url">https://officialarte.vercel.app/sobre</string>
     <string name="no_connection">Sem ligação à Internet</string>
     <string name="no_connection_message">Verifique a sua conexão e tente novamente.</string>
+    <string name="server_error">Página indisponível</string>
+    <string name="server_error_message">O site está temporariamente fora do ar. Tente novamente mais tarde.</string>
     <string name="retry">Tentar novamente</string>
     <string name="update_available">Atualização disponível</string>
     <string name="update_message">Uma nova versão do OfficialArte está disponível. Deseja atualizar?</string>
@@ -13,4 +16,16 @@
     <string name="no_update">Tudo atualizado</string>
     <string name="no_update_message">Você já tem a versão mais recente do OfficialArte.</string>
     <string name="ok">OK</string>
+    <string name="menu">Menu</string>
+    <string name="about">Sobre OfficialArte</string>
+    <string name="developer">Desenvolvedor</string>
+    <string name="close_menu">Fechar</string>
+    <string name="back">Voltar</string>
+    <string name="dev_name">JuLogic</string>
+    <string name="dev_role">Desenvolvedor Android</string>
+    <string name="dev_email">julogic404@gmail.com</string>
+    <string name="dev_github">github.com/julogic404</string>
+    <string name="dev_instagram">@julogic404</string>
+    <string name="tampered_app">Aplicação não autorizada</string>
+    <string name="tampered_message">Esta cópia do app não é oficial. Baixe a versão original.</string>
 </resources>
