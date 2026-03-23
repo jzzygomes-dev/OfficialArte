@@ -1,0 +1,7 @@
+{
+  "version": "1.0.0",
+  "changelog": "Primeira versão do OfficialArte.\n• Interface WebView optimizada\n• Suporte offline\n• Verificação de atualizações",
+  "force": false,
+  "apk_url": "https://officialarte.vercel.app/releases/officialarte-v1.0.0.apk",
+  "min_supported": "1.0.0"
+}
