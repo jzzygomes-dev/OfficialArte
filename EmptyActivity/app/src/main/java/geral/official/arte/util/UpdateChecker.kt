@@ -31,27 +31,20 @@ object UpdateChecker {
     suspend fun check(activity: Activity, silent: Boolean = true) {
         try {
             val remote = fetchVersion() ?: run {
-                if (!silent) showNoUpdateDialog(activity)
+                if (!silent) withContext(Dispatchers.Main) { showNoUpdateDialog(activity) }
                 return
             }
 
-            val currentCode = activity.packageManager
+            val currentVersion = activity.packageManager
                 .getPackageInfo(activity.packageName, 0)
-                .let {
-                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.P) {
-                        it.longVersionCode.toInt()
-                    } else {
-                        @Suppress("DEPRECATION")
-                        it.versionCode
-                    }
-                }
+                .versionName ?: "0.0.0"
 
-            val remoteCode = parseVersionCode(remote.version)
-            val minCode = parseVersionCode(remote.minSupported)
+            val comparison = compareVersions(remote.version, currentVersion)
+            val isBelowMin = compareVersions(currentVersion, remote.minSupported) < 0
 
-            if (remoteCode > currentCode) {
+            if (comparison > 0) {
                 withContext(Dispatchers.Main) {
-                    showUpdateDialog(activity, remote, currentCode < minCode)
+                    showUpdateDialog(activity, remote, isBelowMin)
                 }
             } else if (!silent) {
                 withContext(Dispatchers.Main) {
@@ -67,16 +60,20 @@ object UpdateChecker {
         }
     }
 
-    private fun parseVersionCode(version: String): Int {
-        val parts = version.split(".")
-        return try {
-            val major = parts.getOrNull(0)?.toIntOrNull() ?: 0
-            val minor = parts.getOrNull(1)?.toIntOrNull() ?: 0
-            val patch = parts.getOrNull(2)?.toIntOrNull() ?: 0
-            major * 10000 + minor * 100 + patch
-        } catch (_: Exception) {
-            0
+    /**
+     * Compares two semantic version strings (e.g. "1.2.3").
+     * Returns positive if v1 > v2, negative if v1 < v2, 0 if equal.
+     */
+    private fun compareVersions(v1: String, v2: String): Int {
+        val parts1 = v1.split(".").map { it.toIntOrNull() ?: 0 }
+        val parts2 = v2.split(".").map { it.toIntOrNull() ?: 0 }
+        val maxLen = maxOf(parts1.size, parts2.size)
+        for (i in 0 until maxLen) {
+            val p1 = parts1.getOrElse(i) { 0 }
+            val p2 = parts2.getOrElse(i) { 0 }
+            if (p1 != p2) return p1 - p2
         }
+        return 0
     }
 
     private suspend fun fetchVersion(): VersionInfo? = withContext(Dispatchers.IO) {
