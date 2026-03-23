@@ -23,8 +23,8 @@ class DeveloperActivity : AppCompatActivity() {
             startActivity(Intent.createChooser(intent, "E-mail"))
         }
 
-        binding.devGithub.setOnClickListener {
-            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://${getString(R.string.dev_github)}")))
+        binding.devFacebook.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://facebook.com/${getString(R.string.dev_facebook)}")))
         }
 
         binding.devInstagram.setOnClickListener {
