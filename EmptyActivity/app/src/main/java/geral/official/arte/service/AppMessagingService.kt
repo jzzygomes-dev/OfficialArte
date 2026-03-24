@@ -17,6 +17,7 @@ class AppMessagingService : FirebaseMessagingService() {
     companion object {
         private const val CHANNEL_ID = "officialarte_notifications"
         private const val CHANNEL_NAME = "OfficialArte"
+        const val EXTRA_DEEP_LINK = "extra_deep_link"
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
