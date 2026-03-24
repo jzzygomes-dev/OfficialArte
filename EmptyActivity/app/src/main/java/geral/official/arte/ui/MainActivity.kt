@@ -57,11 +57,30 @@ class MainActivity : AppCompatActivity() {
         askNotificationPermission()
 
         if (NetworkUtil.isOnline(this)) {
-            binding.webView.loadUrl(getString(R.string.base_url))
+            val deepLink = getDeepLinkUrl(intent)
+            binding.webView.loadUrl(deepLink ?: getString(R.string.base_url))
             checkForUpdates()
         } else {
             showOffline()
         }
+    }
+
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        val deepLink = getDeepLinkUrl(intent)
+        if (deepLink != null && NetworkUtil.isOnline(this)) {
+            showWebView()
+            binding.webView.loadUrl(deepLink)
+        }
+    }
+
+    private fun getDeepLinkUrl(intent: Intent?): String? {
+        val url = intent?.getStringExtra(
+            geral.official.arte.service.AppMessagingService.EXTRA_DEEP_LINK
+        ) ?: return null
+        // Só permite URLs do domínio autorizado
+        return if (url.contains(baseHost)) url else null
     }
 
     @SuppressLint("SetJavaScriptEnabled")

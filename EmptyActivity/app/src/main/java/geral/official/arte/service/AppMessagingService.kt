@@ -17,6 +17,7 @@ class AppMessagingService : FirebaseMessagingService() {
     companion object {
         private const val CHANNEL_ID = "officialarte_notifications"
         private const val CHANNEL_NAME = "OfficialArte"
+        const val EXTRA_DEEP_LINK = "extra_deep_link"
     }
 
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
@@ -30,8 +31,12 @@ class AppMessagingService : FirebaseMessagingService() {
             ?: remoteMessage.data["body"]
             ?: ""
 
+        val deepLink = remoteMessage.data["url"]
+            ?: remoteMessage.data["link"]
+            ?: remoteMessage.data["deep_link"]
+
         if (body.isNotEmpty()) {
-            showNotification(title, body)
+            showNotification(title, body, deepLink)
         }
     }
 
@@ -40,9 +45,10 @@ class AppMessagingService : FirebaseMessagingService() {
         // Send token to server if needed in the future
     }
 
-    private fun showNotification(title: String, body: String) {
+    private fun showNotification(title: String, body: String, deepLink: String?) {
         val intent = Intent(this, MainActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            deepLink?.let { putExtra(EXTRA_DEEP_LINK, it) }
         }
 
         val pendingIntent = PendingIntent.getActivity(
