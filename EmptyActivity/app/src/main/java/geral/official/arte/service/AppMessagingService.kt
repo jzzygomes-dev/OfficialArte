@@ -30,8 +30,12 @@ class AppMessagingService : FirebaseMessagingService() {
             ?: remoteMessage.data["body"]
             ?: ""
 
+        val deepLink = remoteMessage.data["url"]
+            ?: remoteMessage.data["link"]
+            ?: remoteMessage.data["deep_link"]
+
         if (body.isNotEmpty()) {
-            showNotification(title, body)
+            showNotification(title, body, deepLink)
         }
     }
 
