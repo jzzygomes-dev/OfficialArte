@@ -44,9 +44,10 @@ class AppMessagingService : FirebaseMessagingService() {
         // Send token to server if needed in the future
     }
 
-    private fun showNotification(title: String, body: String) {
+    private fun showNotification(title: String, body: String, deepLink: String?) {
         val intent = Intent(this, MainActivity::class.java).apply {
             addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            deepLink?.let { putExtra(EXTRA_DEEP_LINK, it) }
         }
 
         val pendingIntent = PendingIntent.getActivity(
