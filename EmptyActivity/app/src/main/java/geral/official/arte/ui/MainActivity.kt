@@ -76,9 +76,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun getDeepLinkUrl(intent: Intent?): String? {
-        val url = intent?.getStringExtra(
+        if (intent == null) return null
+        // Chave usada quando onMessageReceived processa a notificação (foreground)
+        val url = intent.getStringExtra(
             geral.official.arte.service.AppMessagingService.EXTRA_DEEP_LINK
-        ) ?: return null
+        )
+        // Chaves enviadas pelo Firebase data payload (background — extras diretos)
+            ?: intent.getStringExtra("url")
+            ?: intent.getStringExtra("link")
+            ?: intent.getStringExtra("deep_link")
+            ?: return null
         // Só permite URLs do domínio autorizado
         return if (url.contains(baseHost)) url else null
     }
